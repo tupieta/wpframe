@@ -37,10 +37,11 @@ Vagrant::Config.run do |config|
   db_grant_to   = database['dev']['grant_to']
 
   config.vm.share_folder("v-root", "#{app_deploy_to}/current", ".")
+  config.vm.share_folder("config", "/home/vagrant/tmp/#{app_name}/dev", "./config")
 
   config.vm.provision :puppet do |puppet|
     # Grab the manifest erb
-    pp_erb = ERB.new( File.read('config/puppet/templates/site.pp.erb') )
+    pp_erb = ERB.new( File.read('config/puppet/site.pp.erb') )
 
     # Write it out to a file
     File.open('config/puppet/rendered/site.pp', 'w') do |f|
