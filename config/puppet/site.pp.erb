@@ -48,7 +48,7 @@ file { "/etc/resolv.conf":
 	owner => root,
 	group => root,
 	mode => 644,
-	source => "<%= app_deploy_to %>/current/config/scripts/vagrant_resolv.conf"
+	source => "<%= erb_path %>/scripts/modules/vagrant_resolv.conf"
 }
 <% end %>
 
